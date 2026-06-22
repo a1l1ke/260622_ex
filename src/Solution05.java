@@ -2,6 +2,17 @@ import java.util.*;
 
 public class Solution05 {
     public int solution(int n, int[] lost, int[] reserve) {
+        System.out.println("n = " + n);
+        int[] students = new int[n+1];
+        System.out.println("Arrays.toString(lost) = " + Arrays.toString(lost));
+        for (int i : lost) {
+            students[i]--; // -1
+        }
+        System.out.println("Arrays.toString(reserve) = " + Arrays.toString(reserve));
+        for (int i : reserve) {
+            students[i]++; // 0, 1, -1
+        }
+        System.out.println("Arrays.toString(students) = " + Arrays.toString(students));
         return 0;
     }
 
