@@ -1,8 +1,37 @@
 public class Solution02 {
     public String solution(String s) {
-        // [비즈니스 로직 구현부]
-        // 정답 코드는 제외되었습니다.
-        return "";
+//        System.out.println("s = " + s);
+        // 오답케이스
+        // 첫 문자는 대문자화 하고, 나머지를 소문자로
+//        for (char c : s.toCharArray()) {
+        String answer = "";
+//        for (int i = 0; i < s.length(); i++) {
+        for (int i = 0, p = 0; i < s.length(); i++, p++) {
+            char c = s.charAt(i);
+            if (c == ' ') {
+                p = -1;
+                answer += " ";
+                continue;
+            }
+//            if (i == 0) {
+            if (p == 0) {
+//                c = Character.toUpperCase(c); // toLowerCase
+                if (c >= 'a' && c <= 'z') {
+                    c = (char) (c - 32);
+                }
+//                System.out.println((int) 'A'); // 65
+//                System.out.println((int) 'a'); // 97
+            } else {
+                if (c >= 'A' && c <= 'Z') {
+                    c = (char) (c + 32);
+                }
+            }
+            answer += c;
+//            System.out.println("c = " + c);
+        }
+
+//        return "";
+        return answer;
     }
 
     public static void main(String[] args) {
