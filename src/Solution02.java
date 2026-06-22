@@ -4,13 +4,16 @@ public class Solution02 {
         // 오답케이스
         // 첫 문자는 대문자화 하고, 나머지를 소문자로
 //        for (char c : s.toCharArray()) {
-        String answer = "";
+//        String answer = "";
 //        for (int i = 0; i < s.length(); i++) {
+        StringBuilder sb = new StringBuilder();
         for (int i = 0, p = 0; i < s.length(); i++, p++) {
             char c = s.charAt(i);
             if (c == ' ') {
                 p = -1;
-                answer += " ";
+//                answer += " ";
+                // add, append, push, insert
+                sb.append(c);
                 continue;
             }
 //            if (i == 0) {
@@ -26,12 +29,14 @@ public class Solution02 {
                     c = (char) (c + 32);
                 }
             }
-            answer += c;
+//            answer += c;
+            sb.append(c);
 //            System.out.println("c = " + c);
         }
 
 //        return "";
-        return answer;
+//        System.out.println("sb = " + sb);
+        return sb.toString();
     }
 
     public static void main(String[] args) {
