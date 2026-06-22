@@ -2,18 +2,34 @@ import java.util.*;
 
 public class Solution05 {
     public int solution(int n, int[] lost, int[] reserve) {
-        System.out.println("n = " + n);
-        int[] students = new int[n+1];
-        System.out.println("Arrays.toString(lost) = " + Arrays.toString(lost));
+//        System.out.println("n = " + n);
+        int[] students = new int[n+2]; // +1 : 1부터 시작해서. +1 : 조건문을 덜 쓰기 (index out of bound)
+//        System.out.println("Arrays.toString(lost) = " + Arrays.toString(lost));
         for (int i : lost) {
             students[i]--; // -1
         }
-        System.out.println("Arrays.toString(reserve) = " + Arrays.toString(reserve));
+//        System.out.println("Arrays.toString(reserve) = " + Arrays.toString(reserve));
         for (int i : reserve) {
             students[i]++; // 0, 1, -1
         }
-        System.out.println("Arrays.toString(students) = " + Arrays.toString(students));
-        return 0;
+//        System.out.println("Arrays.toString(students) = " + Arrays.toString(students));
+        // 학생들 번호는 1부터 시작.
+        int answer = 0; // 수업 들어갈 수 있는 학생. 합계해서 0 이상인 학생.
+        for (int i = 1; i <= n; i++) {
+            // 앞 뒤 친구에게 빌려오기 -> 여벌은 1벌이라는 조건. & 사이즈가 앞뒤만 맞다는 조건 -> 굳이 여러 배치 X.
+            boolean imOk = students[i] >= 0;
+            boolean prevOk = students[i - 1] == 1;
+            boolean nextOk = students[i + 1] == 1;
+            if (imOk || prevOk || nextOk) {
+                answer++;
+            }
+            if (!imOk && nextOk) {
+                students[i + 1]--;
+            }
+//            System.out.print("");
+        }
+        // int answer = 0;
+        return answer;
     }
 
     public static void main(String[] args) {
