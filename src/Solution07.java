@@ -2,8 +2,8 @@ import java.util.*;
 
 public class Solution07 {
     public int[] solution(int[] progresses, int[] speeds) {
-        System.out.println("Arrays.toString(progresses) = " + Arrays.toString(progresses));
-        System.out.println("Arrays.toString(speeds) = " + Arrays.toString(speeds));
+//        System.out.println("Arrays.toString(progresses) = " + Arrays.toString(progresses));
+//        System.out.println("Arrays.toString(speeds) = " + Arrays.toString(speeds));
         Queue<Integer> queue = new ArrayDeque<>(); // 덱 -> 양방향 큐 -> 상황에 따라서 스택처럼도 쓸 수 있는 큐
         for (int i = 0; i < progresses.length; i++) {
             // for문을 사용해서 길이 같은 배열을 같은 인덱스로 일괄 조회
@@ -14,9 +14,30 @@ public class Solution07 {
             }
             queue.add(days);
         }
-        System.out.println("queue = " + queue);
-        
-        int[] answer = {};
+//        System.out.println("queue = " + queue);
+
+        List<Integer> list = new ArrayList<>();
+        while (!queue.isEmpty()) { // 안 비었다면...
+            int first = queue.poll();
+            int count = 1;
+
+            while (!queue.isEmpty() // 배포될 게 남았고
+                    // peek <- 제거하지 않고 첫 값(가장 오래된 값)을 보기
+                    && queue.peek() <= first // 새로운 기능이 기존에 묶음에 있는 잔여 일보다 작으면
+                    // peek 가장 오래된값 보기, poll 가장 오래된 값 보고 제거하기
+            ) {
+                queue.poll(); // 큐에서 제거하되 그 값을 쓰지 않고
+                count++;
+            }
+            // 한 배포일에 묶인 기능 개수
+            list.add(count);
+        }
+
+//        int[] answer = {};
+        int[] answer = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            answer[i] = list.get(i);
+        }
         return answer;
     }
 
