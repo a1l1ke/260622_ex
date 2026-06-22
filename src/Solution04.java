@@ -2,27 +2,45 @@ import java.util.*;
 
 public class Solution04 {
     public int solution(int[][] triangle) {
-        System.out.println("Arrays.deepToString(triangle) = " + Arrays.deepToString(triangle));
+//        System.out.println("Arrays.deepToString(triangle) = " + Arrays.deepToString(triangle));
         int[][] memo = new int[triangle.length][triangle.length];
 //        for (int[] ints : triangle) {
 //            System.out.println(Arrays.toString(ints));
 //        }
-        for (int[] ints : triangle) {
-            System.out.println(Arrays.toString(ints));
-        }
+//        for (int[] ints : triangle) {
+//            System.out.println(Arrays.toString(ints));
+//        }
         for (int i = 0; i < triangle.length; i++) {
             for (int j = 0; j < triangle[i].length; j++) {
                 memo[i][j] = triangle[i][j];
             }
         }
-        for (int[] ints : memo) {
-            System.out.println(Arrays.toString(ints));
+//        for (int[] ints : memo) {
+//            System.out.println(Arrays.toString(ints));
+//        }
+        for (int i = 1; i < memo.length; i++) {
+            for (int j = 0; j < i + 1; j++) {
+                if (j == 0) {
+                    // 맨 왼쪽의 값 -> 바로 위의 값 [i-1][j]만 누적 가능
+                    memo[i][j] += memo[i-1][j];
+                    continue;
+                }
+                if (j == i) {
+                    // 맨 오른쪽의 값 -> 대각선 왼쪽 위의 값만 누적 가능
+                    memo[i][j] += memo[i-1][j-1];
+                    continue;
+                }
+                memo[i][j] += Math.max(memo[i-1][j], memo[i-1][j-1]);
+            }
         }
-        int answer = 0;
 //        int[][] memo = new int[triangle.length][];
 //        int[][] memo = new int[2000][2000];
-        System.out.println("Arrays.deepToString(memo) = " + Arrays.deepToString(memo));
-        
+//        System.out.println("Arrays.deepToString(memo) = " + Arrays.deepToString(memo));
+
+        int answer = 0;
+        for (int v : memo[memo.length - 1]) {
+            answer = Math.max(answer, v);
+        }
         return answer;
     }
 
