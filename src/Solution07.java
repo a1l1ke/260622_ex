@@ -2,6 +2,20 @@ import java.util.*;
 
 public class Solution07 {
     public int[] solution(int[] progresses, int[] speeds) {
+        System.out.println("Arrays.toString(progresses) = " + Arrays.toString(progresses));
+        System.out.println("Arrays.toString(speeds) = " + Arrays.toString(speeds));
+        Queue<Integer> queue = new ArrayDeque<>(); // 덱 -> 양방향 큐 -> 상황에 따라서 스택처럼도 쓸 수 있는 큐
+        for (int i = 0; i < progresses.length; i++) {
+            // for문을 사용해서 길이 같은 배열을 같은 인덱스로 일괄 조회
+            int remain = 100 - progresses[i]; // 남은 진척도 -> 속도로 나누면 필요한 일자
+            int days = remain / speeds[i]; // 소수점/나머지가 있음
+            if (remain % speeds[i] != 0) {
+                days++; // 나머지가 있을 경우 +1. // 삼항연산자를 해도 괜찮음
+            }
+            queue.add(days);
+        }
+        System.out.println("queue = " + queue);
+        
         int[] answer = {};
         return answer;
     }
