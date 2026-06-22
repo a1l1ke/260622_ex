@@ -23,7 +23,8 @@ public class Solution05 {
             if (imOk || prevOk || nextOk) {
                 answer++;
             }
-            if (!imOk && nextOk) {
+            // 빌려야하는데, 앞에선 못 빌리는데, 뒤에서만 빌릴 수 있음 (이경우 차감)
+            if (!imOk && !prevOk && nextOk) {
                 students[i + 1]--;
             }
 //            System.out.print("");
