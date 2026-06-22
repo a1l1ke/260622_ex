@@ -64,5 +64,14 @@ public class Solution05 {
         int result3 = solution.solution(n3, lost3.clone(), reserve3.clone());
         System.out.printf("Test Case 3: %s (결과: %d, 기대값: %d)\n",
                 (result3 == expected3 ? "PASS" : "FAIL"), result3, expected3);
+
+        // 테스트 케이스 4: 앞 학생에게 빌릴 수 없어 뒤 학생의 여벌을 사용하면 중복 대여할 수 없음
+        int n4 = 4;
+        int[] lost4 = {2, 4};
+        int[] reserve4 = {3};
+        int expected4 = 3;
+        int result4 = solution.solution(n4, lost4.clone(), reserve4.clone());
+        System.out.printf("Test Case 4: %s (결과: %d, 기대값: %d)\n",
+                (result4 == expected4 ? "PASS" : "FAIL"), result4, expected4);
     }
 }
