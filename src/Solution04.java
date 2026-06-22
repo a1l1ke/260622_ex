@@ -3,7 +3,26 @@ import java.util.*;
 public class Solution04 {
     public int solution(int[][] triangle) {
         System.out.println("Arrays.deepToString(triangle) = " + Arrays.deepToString(triangle));
+        int[][] memo = new int[triangle.length][triangle.length];
+//        for (int[] ints : triangle) {
+//            System.out.println(Arrays.toString(ints));
+//        }
+        for (int[] ints : triangle) {
+            System.out.println(Arrays.toString(ints));
+        }
+        for (int i = 0; i < triangle.length; i++) {
+            for (int j = 0; j < triangle[i].length; j++) {
+                memo[i][j] = triangle[i][j];
+            }
+        }
+        for (int[] ints : memo) {
+            System.out.println(Arrays.toString(ints));
+        }
         int answer = 0;
+//        int[][] memo = new int[triangle.length][];
+//        int[][] memo = new int[2000][2000];
+        System.out.println("Arrays.deepToString(memo) = " + Arrays.deepToString(memo));
+        
         return answer;
     }
 
